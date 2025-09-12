@@ -8,4 +8,4 @@ above(rectangle(50, 30, "solid", "green"), rectangle(50, 30, "solid", "purple"))
 rectangle(100, 20, "solid", "red")
 rotate(90, rectangle(20, 100, "solid", "pink"))
 
-overlay-align("center", "center", text("STOP", 30, "white"), regular-polygon(50, 8, "solid", "red"))
+overlay-align("center", "center", text("STOP", 40, "white"), regular-polygon(50, 8, "solid", "red") )
