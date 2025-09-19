@@ -63,7 +63,7 @@ overlay-xy(stars, -40, -20, (overlay-align("center", "center", stripe, flag)))
 fun star-stripe-flag(top :: String, mid :: String, bot :: String) -> Image:
   doc: "Creates a flag with a stripe and star in the middle"
   frame(
-    overlay-xy(star-polygon(10, 5, 2, opacity, top),-40, -20,
+    overlay-xy(star-polygon(10, 5, 2, opacity, top),-40, -22,
       (overlay-align("center", "center", rectangle(flag-len, stripe-width, opacity, mid),
           rectangle(flag-len, flag-width, opacity, bot)))))
 end
