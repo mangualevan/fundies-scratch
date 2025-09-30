@@ -1,4 +1,6 @@
 use context dcic2024
+include csv
+include data-source
 # Problem 1
 fun is-leap-year(year :: Number) -> Boolean:
   doc: "Determines if the given year is a leap year"
@@ -61,11 +63,22 @@ mars
 mars["Distance"]
 
 # Problem 5
-
 something = load-table:
   year :: String,
   day :: String,
   month :: String,
   rate :: String
-  source: csv-table-file("boe_rates.csv")
+  source: csv-table-file("boe_rates.csv", default-options)
+  sanitize year using num-sanitizer
+  sanitize day using num-sanitizer
+  sanitize rate using num-sanitizer
 end
+
+something
+something.length()
+median(something, "rate")
+modes(something, "rate")
+order-by(something, "rate", true)
+min-rate = 0.1
+order-by(something, "rate", false)
+max-rate = 17

@@ -1,11 +1,14 @@
 use context dcic2024
-# workouts = table: date :: String, activity :: String, duration :: Number
-#   row: "2025-04-01", "Running", 30
-#   row: "2025-04-02", "Yoga", 45
-#   row: "2025-04-03", "Cycling", 60
-# end
+include csv
+include data-source
 
-# workouts
+workouts = table: date :: String, activity :: String, duration :: Number
+  row: "2025-04-01", "Running", 30
+  row: "2025-04-02", "Yoga", 45
+  row: "2025-04-03", "Cycling", 60
+end
+
+workouts
 
 # check:
 #   table: date :: String, activity :: String, duration :: Number
@@ -27,8 +30,7 @@ use context dcic2024
 # # or all at once:
 # workouts.row-n(1)["duration"]  # -> 45
 
-include csv
-include data-source
+
 plants= load-table:
   plant_common_name :: String,
   location_latitude :: String,
