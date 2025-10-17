@@ -105,27 +105,85 @@ dedup-key = build-column(normalise-dep-time, "dedup_key", lam(s): s["flight"] + 
 
 dedup-key
 
-airline = build column(dedup-key, "airline", lam(s):
-    if s["carrier"] == "UA":
-      "United Airlines"
-      else if:
-      s["carrier"] == "AA":
-      "American Airlines"
-      else if:
-      s["carrier"] == "B6":
-      "JetBlue"
-      else if:
-      s["carrier"] == "DL":
-      "Delta Air Lines"
-      else if:
-      s["carrier"] == "EV":
-      "ExpressJet"
-      else if:
-      s["carrier"] == "WN":
-      "Southwest Airlines"
-      else if:
-      s["carrier"] == "OO":
-      "SkyWest Airlines"
-      else:
-      "Other"
-  end end)
+airline = build-column(dedup-key, "airline", lam(s):
+  if s["carrier"] == "UA":
+    "United Airlines"
+  else if s["carrier"] == "AA":
+    "American Airlines"
+  else if s["carrier"] == "B6":
+    "JetBlue"
+  else if s["carrier"] == "DL":
+    "Delta Air Lines"
+  else if s["carrier"] == "EV":
+    "ExpressJet"
+  else if s["carrier"] == "WN":
+    "Southwest Airlines"
+  else if s["carrier"] == "OO":
+    "SkyWest Airlines"
+  else:
+    "Other"
+  end
+end)
+
+airline
+
+outlier-filter = filter-with(airline, lam(n):
+  (n["distance"] <= 5000) and (n["air_time"] >= 500)
+end)
+
+outlier-filter
+
+# freq-bar-chart(airline, "airline")
+
+# histogram(airline, "distance", 100)
+
+# scatter-plot(airline, "air_time", "distance")
+
+distance = airline.get-column("distance")
+distance
+
+fun total-dist(lst :: List<Number>) -> Number block:
+  doc: "adds all numbers in a list together"
+  var result = 0
+  for each(num from lst):
+    result := num + result
+  end
+  result
+where:
+  total-dist([list: 2,3,4]) is 9
+  total-dist([list: 6,5,2]) is 13
+end
+
+total-dist(distance)
+
+fun avg-dist(lst :: List<Number>) -> Number block:
+  doc: "adds all numbers in a list together then divides by the amount of items in a list"
+  var result = 0
+  for each(num from lst):
+    result := num + result
+  end
+  result / lst.length()
+where:
+  avg-dist([list: 2,3,4]) is 3
+  avg-dist([list: 6,5, 1]) is 4
+end
+
+avg-dist(distance)
+
+fun max-dist(lst :: List<Number>) -> Number block:
+  doc: "finds the highest value in a list"
+  var result = 0
+  for each(num from lst):
+    if result < num:
+      result := num
+    else:
+      result
+  end
+  end
+  result
+where:
+  max-dist([list: 2,3,4]) is 4
+  max-dist([list: 6,5,2]) is 6
+end
+
+max-dist(distance)
