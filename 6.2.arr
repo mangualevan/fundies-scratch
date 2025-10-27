@@ -29,8 +29,7 @@ where:
   my-len([list: 9]) is 1
   my-len([list: ]) is 0
   
-  my-len([list: 55,56,57,58]) is 1 + my-len([list: 56,57,58])
-  
- my-len([list: 55,56,57,58]) is 2 + my-len([list: 56,57,58].rest)
-  my-len([list: 55,56,57,58]) is 1 + my-len([list: 55,56,57,58].rest)  
+  my-len([list: 55,56,57,58]) is 1 + my-len([list: 56,57,58]
+    my-len([list: 55,56,57,58]) is 2 + my-len([list: 56,57,58].rest)
+    my-len([list: 55,56,57,58]) is 1 + my-len([list: 556,57,58].rest)
 end
